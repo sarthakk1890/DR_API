@@ -8,10 +8,7 @@ from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:3000", #its the port where react is running
-]
+origins = [*]
 
 app.add_middleware(
     CORSMiddleware,
