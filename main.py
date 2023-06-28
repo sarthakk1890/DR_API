@@ -3,12 +3,11 @@ import numpy as np
 from PIL import Image
 from tensorflow.keras.models import load_model
 from fastapi.middleware.cors import CORSMiddleware
-from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 from fastapi import FastAPI, File, UploadFile
 
 app = FastAPI()
 
-origins = [*]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -45,6 +44,5 @@ async def predict(file: UploadFile = File(...)):
     result = class_labels[predicted_class]
     return {"result": result}
 
-
 if __name__ == "__main__":
-    uvicorn.run(app, host='localhost', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=int(os.environ.get("PORT", 8000)))
