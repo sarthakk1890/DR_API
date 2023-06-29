@@ -3,6 +3,7 @@ import numpy as np
 import tensorflow as tf
 from PIL import Image
 from tensorflow.keras.models import load_model
+from tensorflow.keras.applications.mobilenet_v2 import preprocess_input  # Added import statement
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, File, UploadFile
 
@@ -38,7 +39,7 @@ async def predict(file: UploadFile = File(...)):
     image = Image.open(file.file).convert('RGB')
     image = image.resize((224, 224))
     image = np.array(image)
-    image = preprocess_input(image)
+    image = preprocess_input(image)  # Applied preprocessing
     image = np.expand_dims(image, axis=0)
     predictions = model.predict(image)
     predicted_class = np.argmax(predictions)
