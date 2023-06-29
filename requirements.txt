@@ -5,6 +5,4 @@ tensorflow==2.6.0
 fastapi==0.68.1
 tensorflow-cpu==2.6.0
 protobuf==3.20.0
-typing-extensions==3.7.4
-urllib==3.2.0
-pydantic==1.7.0
+
